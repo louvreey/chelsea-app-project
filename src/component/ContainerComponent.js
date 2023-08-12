@@ -4,12 +4,11 @@ import React from 'react';
 export const ContainerComponent = () => {
   const {title, date, nominal} = props;
   return (
-    <View style={styles.mainContainer} >
-      <Text style={styles.date}>15 Januari 2023 *date*</Text>
-      <Text style={styles.title}>Makan *title*</Text>
-      <Text style={styles.nominal}>IDR 50.000 *nominal*</Text>
+    <View style={styles.mainContainer} {...props}>
+      <Text style={styles.date}>{date}</Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.nominal}>{nominal}</Text>
     </View>
-    
   );
 };
 
