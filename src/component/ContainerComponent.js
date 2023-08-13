@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 
-export const ContainerComponent = () => {
+const ContainerComponent = props => {
   const {title, date, nominal} = props;
   return (
-    <View style={styles.mainContainer} {...props}>
+    <View style={styles.mainContainer}>
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.nominal}>{nominal}</Text>
@@ -12,22 +12,29 @@ export const ContainerComponent = () => {
   );
 };
 
+export default ContainerComponent;
+
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 20,
-    alignItems: 'center',
-    alignContent: 'center',
+    padding: 8,
     borderWidth: 1,
     borderRadius: 25,
+    marginBottom: 15,
   },
   date: {
     textAlign: 'right',
     margin: 5,
+    justifyContent: 'flex-end',
+    paddingRight: 9,
+    fontSize: 14,
   },
   title: {
     fontWeight: 'bold',
+    fontSize: 16,
+    paddingLeft: 15,
   },
   nominal: {
     margin: 10,
+    paddingLeft: 5,
   },
 });
