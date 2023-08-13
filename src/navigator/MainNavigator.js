@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
-const StartScreen = props => {
+const StartScreen = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
@@ -62,7 +62,7 @@ const StartScreen = props => {
 const MainNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="DetailScreen">
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
@@ -86,7 +86,7 @@ const MainNavigator = () => {
           }}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="StartScreen"
           component={StartScreen}
           options={{
@@ -96,7 +96,7 @@ const MainNavigator = () => {
               backgroundColor: '#E6E6FA',
             },
           }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
