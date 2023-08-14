@@ -1,3 +1,4 @@
+
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 
@@ -5,6 +6,7 @@ const ContainerComponent = props => {
   const {title, date, nominal} = props;
   return (
     <View style={styles.mainContainer}>
+
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.nominal}>{nominal}</Text>
@@ -12,7 +14,7 @@ const ContainerComponent = props => {
   );
 };
 
-export default ContainerComponent;
+export default ContainerComponent
 
 const styles = StyleSheet.create({
   mainContainer: {

@@ -1,3 +1,4 @@
+
 import {
   StyleSheet,
   Text,
@@ -36,6 +37,7 @@ const HomeScreen = () => {
           </View>
         </View>
 
+
         <ContainerComponent
           title="Makan diluar"
           date="12 Agustus"
@@ -67,6 +69,14 @@ const HomeScreen = () => {
         />
 
         {/* <FlatList
+
+        <View style={styles.sisaSaldo}>
+          <Text style={styles.textSaldo}>Sisa Saldo : {nominal}</Text>
+        </View>
+      </View>
+      <ContainerComponent title="Makan diluar" date="12 Agustus" nominal="Rp 12.000" />
+      {/* <FlatList
+
         contentContainerStyle={styles.flatListContainer}
         data={data}
         keyExtractor={item => item.id}
