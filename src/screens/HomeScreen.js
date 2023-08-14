@@ -1,8 +1,17 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import DetailScreen from './DetailScreen';
 import ContainerComponent from '../component/ContainerComponent';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -12,17 +21,62 @@ const HomeScreen = () => {
   const [nominal, setNominal] = useState(0);
 
   return (
-    <View style={styles.mainView}>
-      <View style={styles.firstContainer}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Welcome Back!</Text>
+    <ScrollView>
+      <View style={styles.mainView}>
+        <View style={styles.firstContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleText}>Welcome Back!</Text>
+          </View>
+          <View style={styles.profileImage}>
+            <Image
+              source={require('../../assets/images/profile-picture.png')}
+            />
+          </View>
+          <View style={styles.sisaSaldo}>
+            <Text style={styles.textSaldo}>Sisa Saldo : {nominal}</Text>
+          </View>
         </View>
+
+
+        <ContainerComponent
+          title="Makan diluar"
+          date="12 Agustus"
+          nominal="Rp 12.000"
+        />
+
+        <ContainerComponent
+          title="Makan diluar"
+          date="12 Agustus"
+          nominal="Rp 12.000"
+        />
+
+        <ContainerComponent
+          title="Makan diluar"
+          date="12 Agustus"
+          nominal="Rp 12.000"
+        />
+
+        <ContainerComponent
+          title="Makan diluar"
+          date="12 Agustus"
+          nominal="Rp 12.000"
+        />
+
+        <ContainerComponent
+          title="Makan diluar"
+          date="12 Agustus"
+          nominal="Rp 12.000"
+        />
+
+        {/* <FlatList
+
         <View style={styles.sisaSaldo}>
           <Text style={styles.textSaldo}>Sisa Saldo : {nominal}</Text>
         </View>
       </View>
       <ContainerComponent title="Makan diluar" date="12 Agustus" nominal="Rp 12.000" />
       {/* <FlatList
+
         contentContainerStyle={styles.flatListContainer}
         data={data}
         keyExtractor={item => item.id}
@@ -33,17 +87,14 @@ const HomeScreen = () => {
               <TouchableOpacity
                 style={styles.history}
                 onPress={() => navigation.navigate('DetailScreen')}>
-                <ContainerComponent
-                  date="15 Januari 2023"
-                  title="makan"
-                  nominal="35.000"
-                />
+                <ContainerComponent />
               </TouchableOpacity>
             </View>
           );
         }}
       /> */}
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -63,6 +114,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     padding: 20,
+    marginTop: 20,
+    marginBottom: 45,
   },
   titleContainer: {
     alignItems: 'center',
@@ -85,5 +138,9 @@ const styles = StyleSheet.create({
   date: {
     fontWeight: 'bold',
     textAlign: 'right',
+  },
+  profileImage: {
+    height: 190,
+    width: 23,
   },
 });

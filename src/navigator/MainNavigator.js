@@ -5,10 +5,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Icon} from 'react-native-elements';
 
 const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator;
+const Tab = createBottomTabNavigator();
 
 const StartScreen = () => {
   return (
@@ -18,7 +19,7 @@ const StartScreen = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: ({focused}) => (
-            <Text style={{color: focused ? 'green' : 'grey', fontSize: 12}}>
+            <Text style={{color: focused ? 'black' : '#808080', fontSize: 12}}>
               Home
             </Text>
           ),
@@ -26,7 +27,7 @@ const StartScreen = () => {
             <Icon
               name="plus"
               type="material-community"
-              color={focused ? 'purple' : 'grey'}
+              color={focused ? '#800080' : '#808080'}
               size={24}
             />
           ),
@@ -61,7 +62,7 @@ const StartScreen = () => {
 const MainNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="DetailScreen">
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
@@ -85,7 +86,7 @@ const MainNavigator = () => {
           }}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="StartScreen"
           component={StartScreen}
           options={{
@@ -95,7 +96,7 @@ const MainNavigator = () => {
               backgroundColor: '#E6E6FA',
             },
           }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
