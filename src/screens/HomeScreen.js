@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import DetailScreen from './DetailScreen';
 import ContainerComponent from '../component/ContainerComponent';
 
@@ -21,7 +21,8 @@ const HomeScreen = () => {
           <Text style={styles.textSaldo}>Sisa Saldo : {nominal}</Text>
         </View>
       </View>
-      <FlatList
+      <ContainerComponent title="Makan diluar" date="12 Agustus" nominal="Rp 12.000" />
+      {/* <FlatList
         contentContainerStyle={styles.flatListContainer}
         data={data}
         keyExtractor={item => item.id}
@@ -41,7 +42,7 @@ const HomeScreen = () => {
             </View>
           );
         }}
-      />
+      /> */}
     </View>
   );
 };

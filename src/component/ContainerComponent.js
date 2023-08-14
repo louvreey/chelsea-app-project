@@ -1,16 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-export const ContainerComponent = () => {
-  const {title, date, nominal} = props;
+const ContainerComponent = (props) => {
+  const { title, date, nominal } = props;
   return (
     <View style={styles.mainContainer} {...props}>
+
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.nominal}>{nominal}</Text>
     </View>
   );
 };
+
+export default ContainerComponent
 
 const styles = StyleSheet.create({
   mainContainer: {
