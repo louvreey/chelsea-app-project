@@ -4,12 +4,12 @@ import React from 'react';
 const ContainerComponent = (props) => {
   const { title, date, nominal } = props;
   return (
-    <View style={styles.mainContainer} >
+    <View style={styles.mainContainer} {...props}>
+
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.nominal}>{nominal}</Text>
     </View>
-
   );
 };
 

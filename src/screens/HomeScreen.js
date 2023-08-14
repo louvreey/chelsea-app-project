@@ -4,14 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import DetailScreen from './DetailScreen';
 import ContainerComponent from '../component/ContainerComponent';
 
-
-
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   const [data, setData] = useState([]);
 
-  const [nominal, setNominal] = useState(0)
+  const [nominal, setNominal] = useState(0);
 
   return (
     <View style={styles.mainView}>
@@ -35,7 +33,11 @@ const HomeScreen = () => {
               <TouchableOpacity
                 style={styles.history}
                 onPress={() => navigation.navigate('DetailScreen')}>
-                <ContainerComponent />
+                <ContainerComponent
+                  date="15 Januari 2023"
+                  title="makan"
+                  nominal="35.000"
+                />
               </TouchableOpacity>
             </View>
           );
@@ -83,6 +85,5 @@ const styles = StyleSheet.create({
   date: {
     fontWeight: 'bold',
     textAlign: 'right',
-
-  }
+  },
 });
