@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import DetailComponent from '../component/DetailComponent';
+import {useNavigation} from '@react-navigation/native';
 
 const DetailScreen = () => {
+  const {navigation} = useNavigation();
   return (
-    <View style={styles.mainView}>
+    <View style={styles.mainView} onPress={() => navigation.navigate('DetailScreen')}>
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Detail</Text>
