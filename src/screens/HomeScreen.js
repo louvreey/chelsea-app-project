@@ -1,3 +1,4 @@
+
 import {
   StyleSheet,
   Text,
@@ -160,6 +161,7 @@ const HomeScreen = () => {
             <Icon name="plus" type="antdesign" size={24} color="white" />
           </TouchableOpacity>
         </View>
+
       </View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
