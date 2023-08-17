@@ -3,12 +3,13 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 
 const ContainerComponent = props => {
-  const {title, date, nominal} = props;
+  const {title, date, nominal, type} = props;
   return (
     <View style={styles.mainContainer}>
 
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{type}</Text>
       <Text style={styles.nominal}>{nominal}</Text>
     </View>
   );
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     marginBottom: 15,
+    backgroundColor: 'white'
   },
   date: {
     textAlign: 'right',
