@@ -1,12 +1,13 @@
 
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React from 'react';
+import { Icon } from 'react-native-elements';
 
-const ContainerComponent = props => {
-  const {title, date, nominal, type} = props;
+const ContainerComponent = (props) => {
+  const { title, date, nominal, type } = props;
   return (
     <View style={styles.mainContainer}>
-
+      <Icon style={styles.date} name='delete' size={20} {...props} />
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.title}>{type}</Text>

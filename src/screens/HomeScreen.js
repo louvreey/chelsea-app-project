@@ -10,21 +10,20 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import DetailScreen from './DetailScreen';
 import ContainerComponent from '../component/ContainerComponent';
-import {ScrollView} from 'react-native-gesture-handler';
-import {Icon} from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements';
 import realm from '../../store/realm';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-
   const [data, setData] = useState([]);
-
   const [nominal, setNominal] = useState(0);
-
+  const [description, setDescription] = useState("")
+  const [transactionType, setTransactionType] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const HomeScreen = () => {
       const transaction = realm.objects('Transaction');
       const transactionByDate = transaction.sorted('date', true);
       setData(transactionByDate);
-      setSearchText('');
+
     });
     return transactionListPage;
   }, []);
@@ -73,9 +72,10 @@ const HomeScreen = () => {
       realm.write(() => {
         realm.create('Transaction', {
           id: dataLength == 0 ? 1 : lastIdfromrealm + 1,
-          nominal: newTransaction,
+          nominal: nominal,
           date: new Date().toISOString(),
-          type: 'Pengeluaran',
+          type: transactionType,
+          note: description,
         });
       });
       Alert.alert('Successfully save your Transaction!');
@@ -83,17 +83,19 @@ const HomeScreen = () => {
       setModalVisible(false);
 
       const data = realm.objects('Transaction');
-      console.log(data);
+      setData(data)
     } else {
       Alert.alert('Empty Transaction!');
     }
   };
 
-  const onDelete = id => {
+  const onDelete = (id) => {
     realm.write(() => {
-      const removeData = realm.objects('Product').filtered(`id = ${id}`);
+      const removeData = realm.objects('Transaction').filtered(`id = ${id}`);
       realm.delete(removeData);
     });
+    const data = realm.objects('Transaction')
+    setData(data)
     Alert.alert('Successfully removed the transaction');
   };
 
@@ -121,57 +123,45 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.mainView}>
-        <View style={styles.firstContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Welcome Back!</Text>
-          </View>
-          <View style={styles.profileImage}>
-            <Image
-              source={require('../../assets/images/profile-picture.png')}
+    <View style={styles.mainView}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.flatListContainer}
+        data={data}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={
+          <View style={styles.firstContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>Welcome Back Chelsea!</Text>
+            </View>
+            <View style={styles.profileImage}>
+              <Image
+                source={require('../../assets/images/profile-picture.png')}
+              />
+            </View>
+          </View>}
+        renderItem={({ item }) => {
+          return (
+            <ContainerComponent
+              title={item.note}
+              date={dateFormat(item.date)}
+              nominal={item.nominal}
+              type={item.type}
+              onPress={() => onDelete(item.id)}
             />
-          </View>
-          <View style={styles.sisaSaldo}>
-            <Text style={styles.textSaldo}>Sisa Saldo : {nominal}</Text>
-          </View>
-          <FlatList
-            contentContainerStyle={styles.flatListContainer}
-            data={data}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => {
-              return (
-                <ContainerComponent
-                  title={item.note}
-                  date={dateFormat(item.date)}
-                  nominal={item.nominal}
-                  type={item.type}
-                  onLongPress={() => onDelete(item.id)}
-                  onPress={() => navigation.navigate('DetailScreen')}
-                />
-              );
-            }}
-          />
-        </View>
+          );
+        }}
+      />
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={() => setModalVisible(true)}>
-            <Icon name="plus" type="antdesign" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
-
-      </View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.title}>Nominal</Text>
-            <TextInput style={styles.input} placeholder="Isi Nominal" />
+            <TextInput style={styles.input} onChangeText={(text) => setNominal(text)} placeholder="Isi Nominal" />
             <Text style={styles.title}>Jenis Transaksi</Text>
-            <TextInput style={styles.input} placeholder="Isi Jenis Transaksi" />
+            <TextInput style={styles.input} onChangeText={(text) => setTransactionType(text)} placeholder="Isi Jenis Transaksi" />
             <Text style={styles.title}>Deskripsi</Text>
-            <TextInput style={styles.input} placeholder="Deskripsi" />
+            <TextInput style={styles.input} onChangeText={(text) => setDescription(text)} placeholder="Deskripsi" />
 
             <TouchableOpacity
               style={styles.button}
@@ -181,7 +171,17 @@ const HomeScreen = () => {
           </View>
         </View>
       </Modal>
-    </ScrollView>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setModalVisible(true)}>
+          <Icon name="plus" type="antdesign" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
+
+    </View>
+
   );
 };
 
