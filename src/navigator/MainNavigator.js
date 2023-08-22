@@ -8,9 +8,6 @@ import DetailScreen from '../screens/DetailScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 
-
-import HomeScreen from '../screens/HomeScreen';
-import DetailScreen from '../screens/DetailScreen';
 import RecapScreen from '../screens/RecapScreen';
 
 const Stack = createStackNavigator();
@@ -22,12 +19,12 @@ const HomeTab = () => (
       name="HomeScreen"
       component={HomeScreen}
       options={{
-        tabBarLabel: ({focused}) => (
-          <Text style={{color: focused ? 'black' : 'grey', fontSize: 12}}>
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: focused ? 'black' : 'grey', fontSize: 12 }}>
             Home
           </Text>
         ),
-        tabBarIcon: ({focused}) => (
+        tabBarIcon: ({ focused }) => (
           <Icon
             name="home"
             type="material-community"
@@ -41,12 +38,12 @@ const HomeTab = () => (
       name="RecapScreen"
       component={RecapScreen}
       options={{
-        tabBarLabel: ({focused}) => (
-          <Text style={{color: focused ? 'black' : 'grey', fontSize: 12}}>
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: focused ? 'black' : 'grey', fontSize: 12 }}>
             Recap
           </Text>
         ),
-        tabBarIcon: ({focused}) => (
+        tabBarIcon: ({ focused }) => (
           <Icon
             name="file-chart"
             type="material-community"
@@ -134,7 +131,7 @@ const MainNavigator = () => {
           }}
         />
 
-        
+
       </Stack.Navigator>
     </NavigationContainer>
   );
